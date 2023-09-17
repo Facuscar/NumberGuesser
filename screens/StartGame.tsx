@@ -2,7 +2,11 @@ import { useState } from "react";
 import { StyleSheet, TextInput, View, Alert } from "react-native";
 import PrimaryButton from "../components/PrimaryButton";
 
-const StartGame: React.FC = () => {
+interface StartGameProps {
+  onPickNumber: (v: number) => void;
+}
+
+const StartGame: React.FC<StartGameProps> = ({ onPickNumber }) => {
   const [enteredNumber, setEnteredNumber] = useState<string>("");
 
   const resetInputHandler = () => {
@@ -23,7 +27,10 @@ const StartGame: React.FC = () => {
           'Number has to be a number between 1 and 99',
           [{ text: 'Okay', style: 'destructive', onPress: resetInputHandler }]
         )
+      return;
     }
+
+    onPickNumber(chosenNumber);
   };
 
   return (

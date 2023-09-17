@@ -4,6 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 import StartGame from './screens/StartGame';
 import Game from './screens/Game';
+import { Colors } from './constants/colors';
 
 export default function App() {
   const [userNumber, setUserNumber] = useState<number>();
@@ -15,7 +16,7 @@ export default function App() {
   const img = require('./assets/images/background.png');
 
   return (
-    <LinearGradient style={styles.rootScreen}  colors={['#4e0329', '#ddb52f']}>
+    <LinearGradient style={styles.rootScreen}  colors={[Colors.PRIMARY_700, Colors.ACCENT_500]}>
       <ImageBackground source={img} resizeMode='cover' style={styles.rootScreen} imageStyle={styles.backgroundImage}>
         <SafeAreaView style={styles.rootScreen}>
           {!userNumber && <StartGame onPickNumber={pickNumberHandler} />}

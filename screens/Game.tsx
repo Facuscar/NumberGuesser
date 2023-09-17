@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, SafeAreaView } from 'react-native';
 
 const Game: React.FC = () => {
   return (
@@ -15,8 +15,6 @@ export default Game;
 const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
-    padding: 12,
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 24,
   },
 });

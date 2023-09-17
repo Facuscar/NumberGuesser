@@ -1,11 +1,13 @@
-import { Text, View, StyleSheet, SafeAreaView } from 'react-native';
+import { View, StyleSheet, SafeAreaView } from 'react-native';
+
+import Title from '../components/Title';
 
 const Game: React.FC = () => {
   return (
     <View style={styles.screenContainer}>
-      <Text>
+      <Title>
         Opponent's guess
-      </Text>
+      </Title>
     </View>
   )
 }

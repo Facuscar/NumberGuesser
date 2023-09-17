@@ -1,11 +1,17 @@
 import { View, Text, Pressable, StyleSheet } from "react-native";
 
-const PrimaryButton: React.FC<{ children: string }> = ({ children }) => {
+interface PrimaryButtonProps {
+  children: string;
+  onPress: () => void;
+}
+
+const PrimaryButton: React.FC<PrimaryButtonProps> = ({ children, onPress }) => {
   return (
     <View style={styles.outerContainer}>
       <Pressable
         android_ripple={{ color: "#640233" }}
         style={({ pressed }) => pressed ? [styles.container, styles.pressed] : styles.container}
+        onPress={onPress}
       >
         <Text style={styles.buttonText}>
           {children}

@@ -1,7 +1,7 @@
 import { View, StyleSheet, Text, Alert } from 'react-native';
 
 import Title from '../components/ui/Title';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import NumberContainer from '../components/game/NumberContainer';
 import PrimaryButton from '../components/ui/PrimaryButton';
 
@@ -15,12 +15,13 @@ const generateRandomNumber = (min: number, max: number, exclude: number): number
 
 interface GameProps {
   userNumber: number;
+  setGameIsOver: (v: boolean) => void;
 };
 
 let minBoundary = 1;
 let maxBoundary = 100;
 
-const Game: React.FC<GameProps> = ({ userNumber }) => {
+const Game: React.FC<GameProps> = ({ userNumber, setGameIsOver }) => {
   const [guess, setGuess] = useState<number>(generateRandomNumber(minBoundary, maxBoundary, userNumber));
 
   const nextGuessHandler = (direction: 'greater' | 'lower') => {
@@ -36,6 +37,10 @@ const Game: React.FC<GameProps> = ({ userNumber }) => {
     const newGuess = generateRandomNumber(minBoundary, maxBoundary, guess);
     setGuess(newGuess);
   }
+
+  useEffect(() => {
+    if (userNumber === guess) setGameIsOver(true);
+  }, [guess])
 
   return (
     <View style={styles.screenContainer}>

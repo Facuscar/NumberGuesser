@@ -20,7 +20,7 @@ export default function App() {
       <ImageBackground source={img} resizeMode='cover' style={styles.rootScreen} imageStyle={styles.backgroundImage}>
         <SafeAreaView style={styles.rootScreen}>
           {!userNumber && <StartGame onPickNumber={pickNumberHandler} />}
-          {userNumber && <Game />}
+          {userNumber && <Game userNumber={userNumber} />}
         </SafeAreaView>
       </ImageBackground>
     </LinearGradient>

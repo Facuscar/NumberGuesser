@@ -2,7 +2,7 @@ import { View, Text, Pressable, StyleSheet } from "react-native";
 import { Colors } from "../../constants/colors";
 
 interface PrimaryButtonProps {
-  children: string;
+  children: React.ReactNode;
   onPress: () => void;
 }
 

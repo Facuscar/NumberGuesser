@@ -1,9 +1,11 @@
+import { useState, useEffect } from 'react';
 import { View, StyleSheet, Text, Alert } from 'react-native';
 
 import Title from '../components/ui/Title';
-import { useState, useEffect } from 'react';
 import NumberContainer from '../components/game/NumberContainer';
 import PrimaryButton from '../components/ui/PrimaryButton';
+import Card from '../components/ui/Card';
+import InstructionText from '../components/ui/InstructionText';
 
 const generateRandomNumber = (min: number, max: number, exclude: number): number => {
   const randomNumber = Math.floor(Math.random() * (max - min) + min);
@@ -50,16 +52,16 @@ const Game: React.FC<GameProps> = ({ userNumber, setGameIsOver }) => {
       <NumberContainer>
         {userNumber}
       </NumberContainer>
-      <View>
-        <Text>
+      <Card>
+        <InstructionText>
           Higher or lower?
-        </Text>
+        </InstructionText>
         <View>
           <PrimaryButton onPress={() => nextGuessHandler('greater')}>+</PrimaryButton>
           <PrimaryButton onPress={() => nextGuessHandler('lower')}>-</PrimaryButton>
         </View>
         <Text>{guess}</Text>
-      </View>
+      </Card>
     </View>
   )
 }

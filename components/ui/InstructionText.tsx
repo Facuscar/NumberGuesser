@@ -1,13 +1,13 @@
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, TextProps } from "react-native";
 
 import { Colors } from "../../constants/colors";
 
-interface InstructionTextProps {
+interface InstructionTextProps extends TextProps {
   children: React.ReactNode;
 };
 
-const InstructionText: React.FC<InstructionTextProps> = ({ children }) => (
-  <Text style={styles.instructionText}>{children}</Text>
+const InstructionText: React.FC<InstructionTextProps> = ({ children, style }) => (
+  <Text style={[styles.instructionText, style]}>{children}</Text>
 )
 
 export default InstructionText;

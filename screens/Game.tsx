@@ -59,12 +59,12 @@ const Game: React.FC<GameProps> = ({ userNumber, setGameIsOver }) => {
         </InstructionText>
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonContainer}>
-            <PrimaryButton onPress={() => nextGuessHandler('greater')}>
+            <PrimaryButton onPress={() => nextGuessHandler('lower')}>
               <Ionicons name="md-remove" size={24} color="white" />
             </PrimaryButton>
           </View>
           <View style={styles.buttonContainer}>
-          <PrimaryButton onPress={() => nextGuessHandler('lower')}>
+          <PrimaryButton onPress={() => nextGuessHandler('greater')}>
             <Ionicons name="md-add" size={24} color="white" />
           </PrimaryButton>
           </View>

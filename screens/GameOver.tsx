@@ -3,7 +3,13 @@ import Title from "../components/ui/Title";
 import { Colors } from "../constants/colors";
 import PrimaryButton from "../components/ui/PrimaryButton";
 
-const GameOver: React.FC = () => (
+interface GameOverProps {
+  userNumber: number;
+  onStartNewGame: () => void;
+  rounds: number;
+}
+
+const GameOver: React.FC<GameOverProps> = ({userNumber, rounds, onStartNewGame}) => (
   <View style={styles.rootContainer}>
     <Title>
       Game over!
@@ -12,9 +18,9 @@ const GameOver: React.FC = () => (
       <Image style={styles.image} source={require('../assets/images/success.png')} />
     </View>
     <Text style={styles.summaryText}>
-      Your phone took <Text style={styles.highLight}>X</Text> guesses to find the number <Text style={styles.highLight}>Y</Text>
+      Your phone took <Text style={styles.highLight}>{rounds}</Text> guesses to find the number <Text style={styles.highLight}>{userNumber}</Text>
     </Text>
-    <PrimaryButton>Start a new game</PrimaryButton>
+    <PrimaryButton onPress={onStartNewGame}>Start a new game</PrimaryButton>
   </View>
 )
 

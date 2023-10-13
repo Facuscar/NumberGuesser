@@ -42,6 +42,11 @@ const Game: React.FC<GameProps> = ({ userNumber, setGameIsOver }) => {
   }
 
   useEffect(() => {
+    minBoundary = 1;
+    maxBoundary = 100;
+  }, [])
+
+  useEffect(() => {
     if (userNumber === guess) setGameIsOver(true);
   }, [guess])
 

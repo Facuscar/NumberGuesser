@@ -13,6 +13,7 @@ import { Colors } from './constants/colors';
 export default function App() {
   const [userNumber, setUserNumber] = useState<number>();
   const [gameIsOver, setGameIsOver] = useState<boolean>(false);
+  const [guessRounds, setGuessRounds] = useState<number>(0)
 
   const [fontsLoaded] = useFonts({
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
@@ -20,7 +21,13 @@ export default function App() {
   })
 
   const pickNumberHandler = (pickedNumber: number) => {
-    setUserNumber(pickedNumber)
+    setUserNumber(pickedNumber);
+  }
+
+  const startNewGameHandler = () => {
+    setUserNumber(undefined);
+    setGameIsOver(false);
+    setGuessRounds(0)
   }
 
   const img = require('./assets/images/background.png');
@@ -33,7 +40,7 @@ export default function App() {
         <SafeAreaView style={styles.rootScreen}>
           {!userNumber && <StartGame onPickNumber={pickNumberHandler} />}
           {userNumber && !gameIsOver && <Game userNumber={userNumber} setGameIsOver={setGameIsOver} />}
-          {userNumber && gameIsOver && <GameOver />}
+          {userNumber && gameIsOver && <GameOver userNumber={userNumber} onStartNewGame={startNewGameHandler} rounds={guessRounds} />}
         </SafeAreaView>
       </ImageBackground>
     </LinearGradient>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { View, StyleSheet, Text, Alert } from 'react-native';
+import { View, StyleSheet, Text, Alert, FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import Title from '../components/ui/Title';
@@ -80,11 +80,11 @@ const Game: React.FC<GameProps> = ({ userNumber, setGameIsOver }) => {
         <Text>{guess}</Text>
       </Card>
       <View>
-        {guessRounds.map(round => (
-          <Text key={round}>
-            {round}
-          </Text>
-        ))}
+        <FlatList
+          data={guessRounds}
+          renderItem={(itemData) => <Text>{itemData.item}</Text>}
+          keyExtractor={(item) => String(item)}
+        />
       </View>
     </View>
   )

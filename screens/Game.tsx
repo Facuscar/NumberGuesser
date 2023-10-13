@@ -25,7 +25,9 @@ let minBoundary = 1;
 let maxBoundary = 100;
 
 const Game: React.FC<GameProps> = ({ userNumber, setGameIsOver }) => {
-  const [guess, setGuess] = useState<number>(generateRandomNumber(minBoundary, maxBoundary, userNumber));
+  const initialGuess = generateRandomNumber(minBoundary, maxBoundary, userNumber);
+  const [guess, setGuess] = useState<number>(initialGuess);
+  const [guessRounds, setGuessRounds] = useState<number[]>([initialGuess])
 
   const nextGuessHandler = (direction: 'greater' | 'lower') => {
     if (direction === 'lower' && guess < userNumber || direction === 'greater' && guess > userNumber) {
@@ -39,6 +41,7 @@ const Game: React.FC<GameProps> = ({ userNumber, setGameIsOver }) => {
     }
     const newGuess = generateRandomNumber(minBoundary, maxBoundary, guess);
     setGuess(newGuess);
+    setGuessRounds(prev => [newGuess, ...prev]);
   }
 
   useEffect(() => {
@@ -76,6 +79,13 @@ const Game: React.FC<GameProps> = ({ userNumber, setGameIsOver }) => {
         </View>
         <Text>{guess}</Text>
       </Card>
+      <View>
+        {guessRounds.map(round => (
+          <Text key={round}>
+            {round}
+          </Text>
+        ))}
+      </View>
     </View>
   )
 }

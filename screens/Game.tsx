@@ -7,6 +7,7 @@ import NumberContainer from '../components/game/NumberContainer';
 import PrimaryButton from '../components/ui/PrimaryButton';
 import Card from '../components/ui/Card';
 import InstructionText from '../components/ui/InstructionText';
+import GuessLogItem from '../components/game/GuessLogItem';
 
 const generateRandomNumber = (min: number, max: number, exclude: number): number => {
   const randomNumber = Math.floor(Math.random() * (max - min) + min);
@@ -53,6 +54,8 @@ const Game: React.FC<GameProps> = ({ userNumber, setGameIsOver }) => {
     if (userNumber === guess) setGameIsOver(true);
   }, [guess])
 
+  const guessRoundsListLength = guessRounds.length;
+
   return (
     <View style={styles.screenContainer}>
       <Title>
@@ -82,7 +85,7 @@ const Game: React.FC<GameProps> = ({ userNumber, setGameIsOver }) => {
       <View>
         <FlatList
           data={guessRounds}
-          renderItem={(itemData) => <Text>{itemData.item}</Text>}
+          renderItem={(itemData) => <GuessLogItem roundNumber={itemData.index} guess={itemData.item} />}
           keyExtractor={(item) => String(item)}
         />
       </View>

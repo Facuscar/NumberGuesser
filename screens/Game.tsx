@@ -42,7 +42,7 @@ const Game: React.FC<GameProps> = ({ userNumber, gameOverHandler }) => {
     }
     const newGuess = generateRandomNumber(minBoundary, maxBoundary, guess);
     setGuess(newGuess);
-    setGuessRounds(prev => [newGuess, ...prev]);
+    setGuessRounds(prev => [...prev, newGuess]);
   }
 
   useEffect(() => {

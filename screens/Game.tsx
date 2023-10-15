@@ -81,7 +81,6 @@ const Game: React.FC<GameProps> = ({ userNumber, gameOverHandler }) => {
           </PrimaryButton>
           </View>
         </View>
-        <Text>{guess}</Text>
       </Card>
       <View style={styles.listContainer}>
         <FlatList

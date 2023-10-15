@@ -7,10 +7,11 @@ interface GuessLogItemProps {
 }
 
 const GuessLogItem: React.FC<GuessLogItemProps> = ({ roundNumber, guess }) => {
+  
   return (
     <View style={styles.listItem}>
       <Text style={styles.itemText}>
-        #{roundNumber}
+        #{roundNumber + 1}
       </Text>
       <Text style={styles.itemText}>
         Opponent's guess: {guess}

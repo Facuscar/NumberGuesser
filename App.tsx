@@ -30,6 +30,11 @@ export default function App() {
     setGuessRounds(0)
   }
 
+  const endGameHandler = (numberOfRounds: number) => {
+    setGuessRounds(numberOfRounds);
+    setGameIsOver(true);
+  }
+
   const img = require('./assets/images/background.png');
 
   if (!fontsLoaded) return <AppLoading />;
@@ -39,7 +44,7 @@ export default function App() {
       <ImageBackground source={img} resizeMode='cover' style={styles.rootScreen} imageStyle={styles.backgroundImage}>
         <SafeAreaView style={styles.rootScreen}>
           {!userNumber && <StartGame onPickNumber={pickNumberHandler} />}
-          {userNumber && !gameIsOver && <Game userNumber={userNumber} setGameIsOver={setGameIsOver} />}
+          {userNumber && !gameIsOver && <Game userNumber={userNumber} gameOverHandler={endGameHandler} />}
           {userNumber && gameIsOver && <GameOver userNumber={userNumber} onStartNewGame={startNewGameHandler} rounds={guessRounds} />}
         </SafeAreaView>
       </ImageBackground>

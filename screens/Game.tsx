@@ -19,13 +19,13 @@ const generateRandomNumber = (min: number, max: number, exclude: number): number
 
 interface GameProps {
   userNumber: number;
-  setGameIsOver: (v: boolean) => void;
+  gameOverHandler: (v: number) => void;
 };
 
 let minBoundary = 1;
 let maxBoundary = 100;
 
-const Game: React.FC<GameProps> = ({ userNumber, setGameIsOver }) => {
+const Game: React.FC<GameProps> = ({ userNumber, gameOverHandler }) => {
   const initialGuess = generateRandomNumber(minBoundary, maxBoundary, userNumber);
   const [guess, setGuess] = useState<number>(initialGuess);
   const [guessRounds, setGuessRounds] = useState<number[]>([initialGuess])
@@ -50,11 +50,12 @@ const Game: React.FC<GameProps> = ({ userNumber, setGameIsOver }) => {
     maxBoundary = 100;
   }, [])
 
+  const guessRoundsListLength = guessRounds.length;
+
   useEffect(() => {
-    if (userNumber === guess) setGameIsOver(true);
+    if (userNumber === guess) gameOverHandler(guessRoundsListLength);
   }, [guess])
 
-  const guessRoundsListLength = guessRounds.length;
 
   return (
     <View style={styles.screenContainer}>
@@ -82,7 +83,7 @@ const Game: React.FC<GameProps> = ({ userNumber, setGameIsOver }) => {
         </View>
         <Text>{guess}</Text>
       </Card>
-      <View>
+      <View style={styles.listContainer}>
         <FlatList
           data={guessRounds}
           renderItem={(itemData) => <GuessLogItem roundNumber={itemData.index} guess={itemData.item} />}
@@ -109,4 +110,8 @@ const styles = StyleSheet.create({
   instructionText: {
     marginBottom: 12,
   },
+  listContainer: {
+    flex: 1,
+    padding: 16,
+  }
 });

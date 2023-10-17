@@ -7,8 +7,8 @@ import AppLoading from "expo-app-loading";
 import StartGame from './screens/StartGame';
 import Game from './screens/Game';
 import GameOver from './screens/GameOver';
-
 import { Colors } from './constants/colors';
+
 
 export default function App() {
   const [userNumber, setUserNumber] = useState<number>();

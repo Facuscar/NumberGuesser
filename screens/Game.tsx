@@ -9,8 +9,10 @@ import Card from '../components/ui/Card';
 import InstructionText from '../components/ui/InstructionText';
 import GuessLogItem from '../components/game/GuessLogItem';
 
-const generateRandomNumber = (min: number, max: number, exclude: number): number => {
+const generateRandomNumber = (min: number, max: number, exclude?: number): number => {
   const randomNumber = Math.floor(Math.random() * (max - min) + min);
+  console.log(randomNumber, 'random number');
+  
   if (randomNumber === exclude) {
     return generateRandomNumber(min, max, exclude);
   }
@@ -22,8 +24,8 @@ interface GameProps {
   gameOverHandler: (v: number) => void;
 };
 
-let minBoundary = 1;
-let maxBoundary = 100;
+let minBoundary = 51;
+let maxBoundary = 53;
 
 const Game: React.FC<GameProps> = ({ userNumber, gameOverHandler }) => {
   const initialGuess = generateRandomNumber(minBoundary, maxBoundary, userNumber);
@@ -40,14 +42,14 @@ const Game: React.FC<GameProps> = ({ userNumber, gameOverHandler }) => {
     } else {
       minBoundary = guess + 1;
     }
-    const newGuess = generateRandomNumber(minBoundary, maxBoundary, guess);
+    const newGuess = generateRandomNumber(minBoundary, maxBoundary);
     setGuess(newGuess);
     setGuessRounds(prev => [...prev, newGuess]);
   }
 
   useEffect(() => {
-    minBoundary = 1;
-    maxBoundary = 100;
+    minBoundary = 51;
+    maxBoundary = 53;
   }, [])
 
   const guessRoundsListLength = guessRounds.length;

@@ -24,8 +24,8 @@ interface GameProps {
   gameOverHandler: (v: number) => void;
 };
 
-let minBoundary = 51;
-let maxBoundary = 53;
+let minBoundary = 1;
+let maxBoundary = 100;
 
 const Game: React.FC<GameProps> = ({ userNumber, gameOverHandler }) => {
   const initialGuess = generateRandomNumber(minBoundary, maxBoundary, userNumber);
@@ -48,8 +48,8 @@ const Game: React.FC<GameProps> = ({ userNumber, gameOverHandler }) => {
   }
 
   useEffect(() => {
-    minBoundary = 51;
-    maxBoundary = 53;
+    minBoundary = 1;
+    maxBoundary = 100;
   }, [])
 
   const guessRoundsListLength = guessRounds.length;

@@ -11,9 +11,8 @@ import GuessLogItem from '../components/game/GuessLogItem';
 
 const generateRandomNumber = (min: number, max: number, exclude?: number): number => {
   const randomNumber = Math.floor(Math.random() * (max - min) + min);
-  console.log(randomNumber, 'random number');
   
-  if (randomNumber === exclude) {
+  if (randomNumber === exclude && (max - min) !== 1) {
     return generateRandomNumber(min, max, exclude);
   }
   return randomNumber;
